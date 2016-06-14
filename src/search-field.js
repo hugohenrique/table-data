@@ -3,11 +3,14 @@ import React, {Component} from 'react';
 export default class SearchField extends Component {
   constructor(...props) {
     super(...props);
-    this.onChange = this.onChange.bind(this);
+    this.state    = {value: ''};
+    this.onChange = this.handleChange.bind(this);
   }
 
-  onChange(e) {
-    this.props.onChange(e.target.value);
+  handleChange(event) {
+    let value = event.target.value;
+    this.setState({value: value});
+    this.props.onChange(value);
   }
 
   render() {
@@ -17,10 +20,11 @@ export default class SearchField extends Component {
           {this.props.label}
         </label>
         <input
+          className="form-control"
           id={this.props.id}
           type="search"
-          value={this.props.value}
-          onChange={this.onChange}
+          value={this.state.value}
+          onChange={this.handleChange.bind(this)}
         />
       </div>
     );

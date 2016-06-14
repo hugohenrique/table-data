@@ -1,11 +1,11 @@
-import React       from 'react';
-import DataManager from './data-manager';
-import Table       from './table';
-import Pagination  from './pagination';
-import SearchField from './search-field';
+import React          from 'react';
+import Table          from './table';
+import TableDataMixin from './table-data-mixin';
+import Pagination     from './pagination';
+import SearchField    from './search-field';
 
 let DataTable = React.createClass({
-  mixins: [DataManager],
+  mixins: [TableDataMixin],
 
   render() {
     let page = this.buildPage();
@@ -20,11 +20,10 @@ let DataTable = React.createClass({
         />
         <Table
           className="table table-bordered"
-          dataSource={page.dataSource}
           columns={this.props.columns}
+          dataSource={page.dataSource}
           sortBy={this.state.sortBy}
-          onSort={this.onSort}
-        />
+          onSort={this.onSort} />
         <Pagination
           className="pagination"
           currentPage={page.currentPage}

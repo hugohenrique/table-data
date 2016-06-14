@@ -22,10 +22,7 @@ function filterPass(filters, data) {
 
 export default class TableDataSource {
   constructor(source) {
-    this.source = source || {
-      columns : [],
-      rows    : [{}]
-    };
+    this.source = source || [];
   }
 
   /**
@@ -33,11 +30,11 @@ export default class TableDataSource {
    * @return value for column at given index or null if does not exist
    */
   columnAt(at) {
-    return this.source.columns[at] || null;
+    return this.source.headers()[at] || null;
   }
 
   rowAt(at) {
-    return this.source.rows[at] || null;
+    return this.source[at] || null;
   }
 
   cellAt({rowAt, columnAt} = {}) {
@@ -51,36 +48,41 @@ export default class TableDataSource {
   }
 
   rows() {
-    return this.source.rows;
+    return this.source;
   }
 
   columns() {
-    return this.source.columns;
+    return Object.keys(this.source[0]);
   }
 
   addColumn(name) {
+    /*
     const rows    = this.rows();
-    const columns = this.columns();
+    const headers = this.headers();
 
     return new TableDataSource({
       ...this.source,
       rows    : rows.map(row => row.concat(null)),
-      columns : columns.concat([name])
+      headers : headers.concat([name])
     });
+    */
   }
 
   removeColumn() {
-    const nextColumns = this.columns().slice(0, this.columns().length - 1);
+    /*
+    const nextColumns = this.headers().slice(0, this.headers().length - 1);
     const nextRows    = this.rows().map(row => row.slice(0, row.length - 1));
 
     return new TableDataSource({
       ...this.source,
-      columns : nextColumns,
+      headers : nextColumns,
       rows    : nextRows
     });
+    */
   }
 
   addRow() {
+    /*
     const rows     = this.rows();
     const nextRows = rows.concat([rows[0].map(() => null)]);
 
@@ -88,14 +90,17 @@ export default class TableDataSource {
       ...this.source,
       rows: nextRows
     });
+    */
   }
 
   removeRow() {
+    /*
     const rows = this.rows();
     return new TableDataSource({
       ...this.source,
       rows: rows.slice(0, rows.length - 1)
     });
+    */
   }
 
   slice(startAt, endAt) {
@@ -105,20 +110,13 @@ export default class TableDataSource {
       endAt = rows.length;
     }
 
-    return new TableDataSource({
-      ...this.source,
-      rows: rows.slice(startAt, endAt)
-    });
+    return new TableDataSource(rows.slice(startAt, endAt));
   }
 
   filterRows(callback) {
-    const rows     = this.rows();
-    const nextRows = rows.filter(callback);
+    const rows = this.rows();
 
-    return new TableDataSource({
-      ...this.source,
-      rows: nextRows
-    });
+    return new TableDataSource(rows.filter(callback));
   }
 
   filter(filters, filterValues) {
@@ -126,24 +124,18 @@ export default class TableDataSource {
     let filterFunc = filterPass.bind(null, filters);
     let filtered   = rows.filter(each => some(filterValues, filterFunc(each)));
 
-    return new TableDataSource({
-      ...this.source,
-      rows: filtered
-    });
+    return new TableDataSource(filtered);
   }
 
   sort(byValues) {
     let rows   = this.rows();
-    let sorted = sortBy(rows, byValues.property);
+    let sorted = sortBy(rows, byValues.prop);
 
     if (byValues.order === 'descending') {
       sorted.reverse();
     }
 
-    return new TableDataSource({
-      ...this.source,
-      rows: sorted
-    });
+    return new TableDataSource(sorted);
   }
 
   clear() {

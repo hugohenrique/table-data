@@ -18,12 +18,12 @@ export default class Column extends Component {
 }
 
 Column.propTypes = {
-  property : PropTypes.string,
-  label    : PropTypes.string,
-  render   : PropTypes.func,
-  sortable : PropTypes.bool,
-  isHeader : PropTypes.bool,
-  content  : PropTypes.string
+  prop      : PropTypes.string,
+  render    : PropTypes.func,
+  sortable  : PropTypes.bool,
+  isHeader  : PropTypes.bool,
+  width     : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className : PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
 
 Column.defaultProps = {
