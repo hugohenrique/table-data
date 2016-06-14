@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify ./src/*.js -t babelify --outfile ./dist/table-data.js",
+    "build": "browserify ./src/*.js --outfile ./dist/table-data.js",
     "build-example": "browserify ./examples/index.js -t babelify --outfile ./examples/table-data.js"
   },
   "devDependencies": {
@@ -28,7 +28,9 @@
     "react": "^15.0.2",
     "react-dom": "^15.0.2"
   },
-  "transform": [
-    "babelify"
-  ]
+  "browserify": {
+    "transform": [
+      ["babelify"]
+    ]
+  }
 }
