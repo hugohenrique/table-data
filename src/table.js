@@ -22,14 +22,27 @@ export default class Table extends Component {
     let {columns, sortBy, onSort} = this.props;
 
     return columns.map((col, i) => {
+      if (col.sortable) {
+        return (
+          <SortHeaderColumn
+            key={i}
+            column={col}
+            sortBy={sortBy}
+            onSort={onSort}>
+            <span>{col.title}</span>
+          </SortHeaderColumn>
+        );
+      }
+
       return (
-        <SortHeaderColumn
+        <Column
           key={i}
           column={col}
           sortBy={sortBy}
-          onSort={onSort}>
+          onSort={onSort}
+          isHeader={true}>
           <span>{col.title}</span>
-        </SortHeaderColumn>
+        </Column>
       );
     });
   }

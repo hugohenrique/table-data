@@ -36,7 +36,7 @@ export default class SortHeaderColumn extends Component {
     }
 
     return (
-      <th role="columnheader" scope="col" style={{width: column.width}} {...sortProps}>
+      <th className="sortable" role="columnheader" scope="col" style={{width: column.width}} {...sortProps}>
         {children}
         {typeof order !== 'undefined' ? <span className={`sort-icon sort-${order}`} aria-hidden="true" /> : null}
       </th>

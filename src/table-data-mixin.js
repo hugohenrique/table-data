@@ -7,12 +7,11 @@ let containsIgnoreCase = function(a, b) {
 
 function buildInitialState(props) {
   return {
-    // Clone the initialData.
     dataSource   : props.dataSource.slice(0),
     sortBy       : props.sortBy,
     filterValues : {},
     currentPage  : 0,
-    pageSize     : props.initialPageSize
+    pageSize     : props.pageSize
   };
 }
 
@@ -23,7 +22,7 @@ export default {
 
   getDefaultProps() {
     return {
-      initialPageSize: 10,
+      pageSize: 10,
       pageSizeOptions: [5, 10, 20],
       filters: {
         globalSearch: {filter: containsIgnoreCase}
@@ -53,8 +52,8 @@ export default {
   },
 
   onFilter(filterName, filterValue) {
-    var {filterValues, sortBy} = this.state;
-    var {dataSource, filters} = this.props;
+    let {filterValues, sortBy} = this.state;
+    let {dataSource, filters}  = this.props;
 
     filterValues[filterName] = filterValue;
 

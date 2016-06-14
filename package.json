@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify ./src/index.js -t babelify --outfile ./dist/table-data.js"
+    "build": "browserify ./examples/index.js -t babelify --outfile ./dist/table-data.js"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
