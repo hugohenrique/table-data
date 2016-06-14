@@ -1,7 +1,11 @@
 {
   "name": "table-data",
   "version": "1.0.0",
-  "main": "./dist/table-data.js",
+  "main": "./src/table-data.js",
+  "repository": {
+    "type" : "git",
+    "url"  : "https://github.com/hugohenrique/table-data"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "browserify ./src/*.js -t babelify --outfile ./dist/table-data.js",
@@ -19,7 +23,8 @@
     "browserify": "^13.0.1"
   },
   "dependencies": {
-    "lodash": "^4.13.1",
+    "lodash.some": "^3.2.3",
+    "lodash.sortby": "^3.1.5",
     "react": "^15.0.2",
     "react-dom": "^15.0.2"
   },
