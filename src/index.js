@@ -3,16 +3,20 @@ import ReactDOM   from 'react-dom';
 import TableData  from './table-data';
 import DataSource from './table-data-source';
 
+let renderEmail = (value, row) => {
+  return <a href={`mailto:${row['email']}`}>Send message</a>;
+};
+
 const columns = [
-  {title: 'ID', prop: 'id'},
+  {title: 'ID', prop: 'id', width: '20px'},
   {title: 'Name', prop: 'name'},
-  {title: 'Year', prop: 'year'}
+  {title: 'E-mail', prop: 'email', render: renderEmail}
 ];
 
 const source = new DataSource([
-  {id: 1, name: 'Foo', year: 1990},
-  {id: 2, name: 'Bar', year: 2000},
-  {id: 3, name: 'Baz', year: 2010}
+  {id: 1, name: 'Foo', email: 'foo@bar.com'},
+  {id: 2, name: 'Bar', email: 'bar@foo.com'},
+  {id: 3, name: 'Baz', email: 'baz@bar.com'}
 ]);
 
 ReactDOM.render(

@@ -6,13 +6,12 @@ export default class Column extends Component {
   }
 
   render() {
-    const {isHeader, children, ...extraProps} = this.props;
-    const Cell = isHeader ? 'th' : 'td';
+    const {children, ...extraProps} = this.props;
 
     return (
-      <Cell {...extraProps}>
+      <td {...extraProps}>
         {children}
-      </Cell>
+      </td>
     );
   }
 }
@@ -20,13 +19,7 @@ export default class Column extends Component {
 Column.propTypes = {
   prop      : PropTypes.string,
   render    : PropTypes.func,
-  sortable  : PropTypes.bool,
-  isHeader  : PropTypes.bool,
-  width     : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   className : PropTypes.oneOfType([PropTypes.string, PropTypes.func])
 };
 
-Column.defaultProps = {
-  sortable: true,
-  isHeader: false
-};
+Column.defaultProps = {};

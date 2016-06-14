@@ -36,7 +36,7 @@ export default class SortHeaderColumn extends Component {
     }
 
     return (
-      <th role="columnheader" scope="col" {...sortProps}>
+      <th role="columnheader" scope="col" style={{width: column.width}} {...sortProps}>
         {children}
         {typeof order !== 'undefined' ? <span className={`sort-icon sort-${order}`} aria-hidden="true" /> : null}
       </th>
@@ -45,9 +45,10 @@ export default class SortHeaderColumn extends Component {
 }
 
 SortHeaderColumn.propTypes = {
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   sortBy: PropTypes.shape({
-    prop  : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    order : PropTypes.oneOf(['ascending', 'descending'])
+    prop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    order: PropTypes.oneOf(['ascending', 'descending'])
   }),
   onSort: PropTypes.func
 };
