@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 
 // Used to cancel events.
-var preventDefault = e => e.preventDefault();
+var preventDefault = event => event.preventDefault();
 
 export default class Pagination extends Component {
   shouldComponentUpdate(nextProps) {

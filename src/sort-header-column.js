@@ -3,7 +3,6 @@ import React, {Component, PropTypes} from 'react';
 function buildSort(column, sortBy, onSort) {
   let order     = sortBy.prop === column.prop ? sortBy.order : 'none';
   let nextOrder = order === 'ascending' ? 'descending' : 'ascending';
-
   let sortEvent = onSort.bind(null, {prop: column.prop, order: nextOrder});
 
   return {

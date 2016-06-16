@@ -115,7 +115,8 @@
 	  columns: columns,
 	  dataSource: dataSource,
 	  sortBy: { prop: 'id', order: 'ascending' },
-	  searchField: { label: 'Searchable', visible: true }
+	  searchField: { label: 'Searchable', visible: true },
+	  noData: 'Without data'
 	}), document.querySelector('#table-data'));
 
 /***/ },
@@ -20465,7 +20466,9 @@
 	        columns: this.props.columns,
 	        dataSource: page.dataSource,
 	        sortBy: this.state.sortBy,
-	        onSort: this.onSort }),
+	        onSort: this.onSort,
+	        noData: this.props.noData
+	      }),
 	      _react2.default.createElement(_pagination2.default, {
 	        className: 'pagination',
 	        currentPage: page.currentPage,
@@ -20600,6 +20603,7 @@
 	      var _props2 = this.props;
 	      var dataSource = _props2.dataSource;
 	      var columns = _props2.columns;
+	      var noData = _props2.noData;
 
 
 	      if (dataSource.rows().length === 0) {
@@ -20609,7 +20613,7 @@
 	          _react2.default.createElement(
 	            'td',
 	            { colSpan: columns.length, className: 'text-center' },
-	            'No data'
+	            noData
 	          )
 	        );
 	      }
@@ -20659,7 +20663,8 @@
 
 
 	Table.defaultProps = {
-	  sortBy: {}
+	  sortBy: {},
+	  noData: 'No data'
 	};
 
 	Table.propTypes = {
@@ -20669,7 +20674,8 @@
 	    prop: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.number]),
 	    order: _react.PropTypes.oneOf(['ascending', 'descending'])
 	  }),
-	  onSort: _react.PropTypes.func
+	  onSort: _react.PropTypes.func,
+	  noData: _react.PropTypes.string
 	};
 
 /***/ },
@@ -37307,7 +37313,6 @@
 	function buildSort(column, sortBy, onSort) {
 	  var order = sortBy.prop === column.prop ? sortBy.order : 'none';
 	  var nextOrder = order === 'ascending' ? 'descending' : 'ascending';
-
 	  var sortEvent = onSort.bind(null, { prop: column.prop, order: nextOrder });
 
 	  return {
@@ -37402,7 +37407,8 @@
 	    filterValues: {},
 	    currentPage: 0,
 	    pageSize: props.pageSize,
-	    searchField: props.searchField
+	    searchField: props.searchField,
+	    noData: props.noData
 	  };
 	}
 
@@ -37420,7 +37426,8 @@
 	      searchField: {
 	        visible: true,
 	        label: 'Search'
-	      }
+	      },
+	      noData: ''
 	    };
 	  },
 	  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
@@ -37521,8 +37528,8 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	// Used to cancel events.
-	var preventDefault = function preventDefault(e) {
-	  return e.preventDefault();
+	var preventDefault = function preventDefault(event) {
+	  return event.preventDefault();
 	};
 
 	var Pagination = function (_Component) {

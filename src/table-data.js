@@ -25,7 +25,9 @@ let DataTable = React.createClass({
           columns={this.props.columns}
           dataSource={page.dataSource}
           sortBy={this.state.sortBy}
-          onSort={this.onSort} />
+          onSort={this.onSort}
+          noData={this.props.noData}
+        />
         <Pagination
           className="pagination"
           currentPage={page.currentPage}

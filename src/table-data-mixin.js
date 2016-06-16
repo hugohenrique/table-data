@@ -12,7 +12,8 @@ function buildInitialState(props) {
     filterValues : {},
     currentPage  : 0,
     pageSize     : props.pageSize,
-    searchField  : props.searchField
+    searchField  : props.searchField,
+    noData       : props.noData
   };
 }
 
@@ -31,7 +32,8 @@ export default {
       searchField: {
         visible : true,
         label   : 'Search'
-      }
+      },
+      noData: ''
     };
   },
 

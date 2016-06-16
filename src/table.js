@@ -61,12 +61,12 @@ export default class Table extends Component {
   }
 
   buildRows() {
-    const {dataSource, columns} = this.props;
+    const {dataSource, columns, noData} = this.props;
 
     if (dataSource.rows().length === 0) {
       return (
         <tr>
-          <td colSpan={columns.length} className="text-center">No data</td>
+          <td colSpan={columns.length} className="text-center">{noData}</td>
         </tr>
       );
     }
@@ -99,7 +99,8 @@ export default class Table extends Component {
 }
 
 Table.defaultProps = {
-  sortBy: {}
+  sortBy: {},
+  noData: 'No data'
 };
 
 Table.propTypes = {
@@ -109,5 +110,6 @@ Table.propTypes = {
     prop  : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     order : PropTypes.oneOf(['ascending', 'descending'])
   }),
-  onSort: PropTypes.func
+  onSort: PropTypes.func,
+  noData: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 };
