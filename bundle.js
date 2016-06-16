@@ -20892,19 +20892,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return value == null || value === '';
 	};
 
-	var getCellValue = function getCellValue(_ref, row) {
+	function getCell(_ref, row) {
 	  var prop = _ref.prop;
 	  var defaultContent = _ref.defaultContent;
 	  var render = _ref.render;
-	  return(
-	    // Return `defaultContent` if the value is empty.
-	    !isEmpty(prop) && isEmpty(row[prop]) ? defaultContent :
-	    // Use the render function for the value.
-	    render ? render(row[prop], row) :
-	    // Otherwise just return the value.
-	    row[prop]
-	  );
-	};
+
+	  var convertedKeys = prop.split('.');
+	  var rowNormalized = row[convertedKeys[0]];
+
+	  if (convertedKeys.length > 1) {
+	    convertedKeys.splice(1).forEach(function (key) {
+	      rowNormalized = rowNormalized[key];
+	    });
+	  }
+
+	  if (!isEmpty(prop) && isEmpty(rowNormalized)) {
+	    return defaultContent;
+	  }
+
+	  if (render) {
+	    return render(rowNormalized);
+	  }
+
+	  return rowNormalized;
+	}
 
 	var Table = function (_Component) {
 	  _inherits(Table, _Component);
@@ -20985,7 +20996,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return _react2.default.createElement(
 	              _column2.default,
 	              { key: i },
-	              getCellValue(col, row)
+	              getCell(col, row)
 	            );
 	          })
 	        );
@@ -21402,10 +21413,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        buttons.push(_react2.default.createElement(
 	          'li',
-	          { key: i, className: isCurrent ? 'active' : null },
+	          { key: i, className: 'page-item ' + (isCurrent ? 'active' : null) },
 	          _react2.default.createElement(
 	            'a',
-	            { role: 'button', href: '#', onClick: btnEvent, tabIndex: '0' },
+	            { className: 'page-link', role: 'button', href: '#', onClick: btnEvent, tabIndex: '0' },
 	            _react2.default.createElement(
 	              'span',
 	              null,
@@ -21437,49 +21448,51 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      buttons = [_react2.default.createElement(
 	        'li',
-	        { key: 'first', className: !isNotFirst ? 'disabled' : null },
+	        { key: 'prev', className: 'page-item ' + (!isNotFirst ? 'disabled' : '') },
 	        _react2.default.createElement(
 	          'a',
-	          { role: 'button', href: '#', tabIndex: '0',
-	            onClick: firstHandler,
-	            'aria-disabled': !isNotFirst,
-	            'aria-label': 'First' },
-	          _react2.default.createElement('span', { className: 'fa fa-angle-double-left', 'aria-hidden': 'true' })
-	        )
-	      ), _react2.default.createElement(
-	        'li',
-	        { key: 'prev', className: !isNotFirst ? 'disabled' : null },
-	        _react2.default.createElement(
-	          'a',
-	          { role: 'button', href: '#', tabIndex: '0',
+	          { className: 'page-link',
+	            role: 'button',
+	            href: '#',
+	            tabIndex: '0',
 	            onClick: prevHandler,
 	            'aria-disabled': !isNotFirst,
 	            'aria-label': 'Previous' },
-	          _react2.default.createElement('span', { className: 'fa fa-angle-left', 'aria-hidden': 'true' })
+	          _react2.default.createElement(
+	            'span',
+	            { 'aria-hidden': 'true' },
+	            '«'
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'sr-only' },
+	            'Previous'
+	          )
 	        )
 	      )].concat(buttons);
 
 	      buttons = buttons.concat([_react2.default.createElement(
 	        'li',
-	        { key: 'next', className: !isNotLast ? 'disabled' : null },
+	        { key: 'next', className: 'page-item ' + (!isNotLast ? 'disabled' : '') },
 	        _react2.default.createElement(
 	          'a',
-	          { role: 'button', href: '#', tabIndex: '0',
+	          { className: 'page-link',
+	            role: 'button',
+	            href: '#',
+	            tabIndex: '0',
 	            onClick: nextHandler,
 	            'aria-disabled': !isNotLast,
 	            'aria-label': 'Next' },
-	          _react2.default.createElement('span', { className: 'fa fa-angle-right', 'aria-hidden': 'true' })
-	        )
-	      ), _react2.default.createElement(
-	        'li',
-	        { key: 'last', className: !isNotLast ? 'disabled' : null },
-	        _react2.default.createElement(
-	          'a',
-	          { role: 'button', href: '#', tabIndex: '0',
-	            onClick: lastHandler,
-	            'aria-disabled': !isNotLast,
-	            'aria-label': 'Last' },
-	          _react2.default.createElement('span', { className: 'fa fa-angle-double-right', 'aria-hidden': 'true' })
+	          _react2.default.createElement(
+	            'span',
+	            { 'aria-hidden': 'true' },
+	            '»'
+	          ),
+	          _react2.default.createElement(
+	            'span',
+	            { className: 'sr-only' },
+	            'Next'
+	          )
 	        )
 	      )]);
 

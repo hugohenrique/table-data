@@ -5,31 +5,25 @@ import SortHeaderColumn from './sort-header-column';
 
 let isEmpty = value => value == null || value === '';
 
-let getCellValue = ({prop, defaultContent, render}, row) =>
-    // Return `defaultContent` if the value is empty.
-    !isEmpty(prop) && isEmpty(row[prop]) ? defaultContent :
-    // Use the render function for the value.
-    render ? render(row[prop], row) :
-    // Otherwise just return the value.
-    row[prop];
-
 function getCell({prop, defaultContent, render}, row) {
-  let property = prop.split('.');
-  row = row[property[0]];
+  let convertedKeys = prop.split('.');
+  let rowNormalized = row[convertedKeys[0]];
 
-  if (property.length > 1) {
-    row = row[property[1]];
+  if (convertedKeys.length > 1) {
+    convertedKeys.splice(1).forEach(key => {
+      rowNormalized = rowNormalized[key];
+    });
   }
 
-  if (!isEmpty(prop) && isEmpty(row)) {
+  if (!isEmpty(prop) && isEmpty(rowNormalized)) {
     return defaultContent;
   }
 
   if (render) {
-    return render(row);
+    return render(rowNormalized);
   }
 
-  return row;
+  return rowNormalized;
 }
 
 export default class Table extends Component {

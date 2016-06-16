@@ -64,31 +64,51 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var renderEmail = function renderEmail(value, row) {
-	  return _react2.default.createElement(
-	    'a',
-	    { href: 'mailto:' + row['email'] },
-	    'Send message'
-	  );
+	var imageRender = function imageRender(value) {
+	  if (undefined === value['src']) {
+	    return null;
+	  }
+
+	  return _react2.default.createElement('img', { src: value['src'] });
 	};
 
-	var columns = [{ title: 'ID', prop: 'id', width: '60px', sortable: true }, { title: 'Name', prop: 'name', sortable: true }, { title: 'Image', prop: 'image.title' }];
+	var columns = [{
+	  title: 'ID',
+	  prop: 'id',
+	  width: '60px',
+	  sortable: true
+	}, {
+	  title: 'Name',
+	  prop: 'name',
+	  sortable: true
+	}, {
+	  title: 'Image',
+	  prop: 'image.title',
+	  sortable: false
+	  /* render: imageRender */
+	}];
 
 	var dataSource = new _tableDataSource2.default([{
 	  id: 1,
 	  name: 'Foo',
 	  image: {
-	    src: "http://icon-icons.com/icons2/577/PNG/256/ExecutiveCar_Black_icon-icons.com_54904.png",
-	    title: "Carro"
+	    src: 'http://icon-icons.com/icons2/577/PNG/256/ExecutiveCar_Black_icon-icons.com_54904.png',
+	    title: 'Carro'
 	  }
 	}, {
 	  id: 2,
 	  name: 'Bar',
-	  image: {}
+	  image: {
+	    src: 'test',
+	    title: 'foobar'
+	  }
 	}, {
 	  id: 3,
 	  name: 'Baz',
-	  image: {}
+	  image: {
+	    src: 'test',
+	    title: 'barfoo'
+	  }
 	}]);
 
 	_reactDom2.default.render(_react2.default.createElement(_tableData2.default, {
@@ -20497,41 +20517,30 @@
 	  return value == null || value === '';
 	};
 
-	var getCellValue = function getCellValue(_ref, row) {
+	function getCell(_ref, row) {
 	  var prop = _ref.prop;
 	  var defaultContent = _ref.defaultContent;
 	  var render = _ref.render;
-	  return(
-	    // Return `defaultContent` if the value is empty.
-	    !isEmpty(prop) && isEmpty(row[prop]) ? defaultContent :
-	    // Use the render function for the value.
-	    render ? render(row[prop], row) :
-	    // Otherwise just return the value.
-	    row[prop]
-	  );
-	};
 
-	function getCell(_ref2, row) {
-	  var prop = _ref2.prop;
-	  var defaultContent = _ref2.defaultContent;
-	  var render = _ref2.render;
+	  var convertedKeys = prop.split('.');
+	  var rowNormalized = row[convertedKeys[0]];
+	  console.log(row);
 
-	  var property = prop.split('.');
-	  row = row[property[0]];
-
-	  if (property.length > 1) {
-	    row = row[property[1]];
+	  if (convertedKeys.length > 1) {
+	    convertedKeys.splice(1).forEach(function (key) {
+	      rowNormalized = rowNormalized[key];
+	    });
 	  }
 
-	  if (!isEmpty(prop) && isEmpty(row)) {
+	  if (!isEmpty(prop) && isEmpty(rowNormalized)) {
 	    return defaultContent;
 	  }
 
 	  if (render) {
-	    return render(row);
+	    return render(rowNormalized);
 	  }
 
-	  return row;
+	  return rowNormalized;
 	}
 
 	var Table = function (_Component) {
