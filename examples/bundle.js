@@ -114,7 +114,8 @@
 	_reactDom2.default.render(_react2.default.createElement(_tableData2.default, {
 	  columns: columns,
 	  dataSource: dataSource,
-	  sortBy: { prop: 'id', order: 'ascending' }
+	  sortBy: { prop: 'id', order: 'ascending' },
+	  searchField: { label: 'Searchable', visible: true }
 	}), document.querySelector('#table-data'));
 
 /***/ },
@@ -20453,12 +20454,12 @@
 	    return _react2.default.createElement(
 	      'div',
 	      { className: this.props.className },
-	      _react2.default.createElement(_searchField2.default, {
+	      this.props.searchField.visible ? _react2.default.createElement(_searchField2.default, {
 	        id: 'search-field',
-	        label: 'Search:',
+	        label: this.props.searchField.label,
 	        value: this.state.filterValues.globalSearch,
 	        onChange: this.onFilter.bind(this, 'globalSearch')
-	      }),
+	      }) : null,
 	      _react2.default.createElement(_table2.default, {
 	        className: 'table table-bordered',
 	        columns: this.props.columns,
@@ -20524,7 +20525,6 @@
 
 	  var convertedKeys = prop.split('.');
 	  var rowNormalized = row[convertedKeys[0]];
-	  console.log(row);
 
 	  if (convertedKeys.length > 1) {
 	    convertedKeys.splice(1).forEach(function (key) {
@@ -37401,7 +37401,8 @@
 	    sortBy: props.sortBy,
 	    filterValues: {},
 	    currentPage: 0,
-	    pageSize: props.pageSize
+	    pageSize: props.pageSize,
+	    searchField: props.searchField
 	  };
 	}
 
@@ -37415,6 +37416,10 @@
 	      pageSizeOptions: [5, 10, 20],
 	      filters: {
 	        globalSearch: { filter: containsIgnoreCase }
+	      },
+	      searchField: {
+	        visible: true,
+	        label: 'Search'
 	      }
 	    };
 	  },
@@ -37760,6 +37765,18 @@
 	}(_react.Component);
 
 	exports.default = SearchField;
+
+
+	SearchField.propTypes = {
+	  id: _react.PropTypes.string.isRequired,
+	  label: _react.PropTypes.string.isRequired,
+	  onChange: _react.PropTypes.func.isRequired,
+	  visible: _react.PropTypes.bool
+	};
+
+	SearchField.defaultProps = {
+	  visible: true
+	};
 
 /***/ }
 /******/ ]);

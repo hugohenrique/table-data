@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 
 export default class SearchField extends Component {
   constructor(...props) {
@@ -30,3 +30,14 @@ export default class SearchField extends Component {
     );
   }
 }
+
+SearchField.propTypes = {
+  id       : PropTypes.string.isRequired,
+  label    : PropTypes.string.isRequired,
+  onChange : PropTypes.func.isRequired,
+  visible  : PropTypes.bool
+};
+
+SearchField.defaultProps = {
+  visible: true
+};

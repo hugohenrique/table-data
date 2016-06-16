@@ -11,7 +11,8 @@ function buildInitialState(props) {
     sortBy       : props.sortBy,
     filterValues : {},
     currentPage  : 0,
-    pageSize     : props.pageSize
+    pageSize     : props.pageSize,
+    searchField  : props.searchField
   };
 }
 
@@ -26,6 +27,10 @@ export default {
       pageSizeOptions: [5, 10, 20],
       filters: {
         globalSearch: {filter: containsIgnoreCase}
+      },
+      searchField: {
+        visible : true,
+        label   : 'Search'
       }
     };
   },

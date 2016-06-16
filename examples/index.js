@@ -63,6 +63,7 @@ ReactDOM.render(
     columns={columns}
     dataSource={dataSource}
     sortBy={{prop: 'id', order: 'ascending'}}
+    searchField={{label: 'Searchable', visible: true}}
   />,
   document.querySelector('#table-data')
 );

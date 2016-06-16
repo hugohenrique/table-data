@@ -12,12 +12,14 @@ let DataTable = React.createClass({
 
     return (
       <div className={this.props.className}>
-        <SearchField
-          id="search-field"
-          label="Search:"
-          value={this.state.filterValues.globalSearch}
-          onChange={this.onFilter.bind(this, 'globalSearch')}
-        />
+        {this.props.searchField.visible ?
+          <SearchField
+            id="search-field"
+            label={this.props.searchField.label}
+            value={this.state.filterValues.globalSearch}
+            onChange={this.onFilter.bind(this, 'globalSearch')}
+          /> :
+          null}
         <Table
           className="table table-bordered"
           columns={this.props.columns}

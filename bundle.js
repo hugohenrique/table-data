@@ -21190,12 +21190,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return _react2.default.createElement(
 	      'div',
 	      { className: this.props.className },
-	      _react2.default.createElement(_searchField2.default, {
+	      this.props.searchField.visible ? _react2.default.createElement(_searchField2.default, {
 	        id: 'search-field',
-	        label: 'Search:',
+	        label: this.props.searchField.label,
 	        value: this.state.filterValues.globalSearch,
 	        onChange: this.onFilter.bind(this, 'globalSearch')
-	      }),
+	      }) : null,
 	      _react2.default.createElement(_table2.default, {
 	        className: 'table table-bordered',
 	        columns: this.props.columns,
@@ -21236,7 +21236,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    sortBy: props.sortBy,
 	    filterValues: {},
 	    currentPage: 0,
-	    pageSize: props.pageSize
+	    pageSize: props.pageSize,
+	    searchField: props.searchField
 	  };
 	}
 
@@ -21250,6 +21251,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      pageSizeOptions: [5, 10, 20],
 	      filters: {
 	        globalSearch: { filter: containsIgnoreCase }
+	      },
+	      searchField: {
+	        visible: true,
+	        label: 'Search'
 	      }
 	    };
 	  },
@@ -21595,6 +21600,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react.Component);
 
 	exports.default = SearchField;
+
+
+	SearchField.propTypes = {
+	  id: _react.PropTypes.string.isRequired,
+	  label: _react.PropTypes.string.isRequired,
+	  onChange: _react.PropTypes.func.isRequired,
+	  visible: _react.PropTypes.bool
+	};
+
+	SearchField.defaultProps = {
+	  visible: true
+	};
 
 /***/ }
 /******/ ])
