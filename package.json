@@ -1,9 +1,9 @@
 {
   "name": "table-data",
   "version": "1.0.0",
-  "main": "./lib/index.js",
+  "main": "./bundle.js",
   "files": [
-    "lib",
+    "bundle.js",
     "src"
   ],
   "repository": {
@@ -12,8 +12,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify ./src/*.js --outfile ./dist/table-data.js",
-    "build-example": "browserify ./examples/index.js -t babelify --outfile ./examples/table-data.js"
+    "build": "webpack ./src --out-dir ./lib"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",

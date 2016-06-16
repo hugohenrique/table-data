@@ -13,6 +13,25 @@ let getCellValue = ({prop, defaultContent, render}, row) =>
     // Otherwise just return the value.
     row[prop];
 
+function getCell({prop, defaultContent, render}, row) {
+  let property = prop.split('.');
+  row = row[property[0]];
+
+  if (property.length > 1) {
+    row = row[property[1]];
+  }
+
+  if (!isEmpty(prop) && isEmpty(row)) {
+    return defaultContent;
+  }
+
+  if (render) {
+    return render(row);
+  }
+
+  return row;
+}
+
 export default class Table extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +81,7 @@ export default class Table extends Component {
       <tr key={k}>
         {columns.map((col, i) => (
           <Column key={i}>
-            {getCellValue(col, row)}
+            {getCell(col, row)}
           </Column>
         ))}
       </tr>
