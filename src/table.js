@@ -83,8 +83,9 @@ export default class Table extends Component {
   }
 
   render() {
+    const tableProps = Object.assign({}, this.props);
     return (
-      <table {...this.props}>
+      <table {...tableProps}>
         <thead>
           <tr>
             {this.buildHeaders()}
