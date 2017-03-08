@@ -33,6 +33,9 @@ export default {
         visible : true,
         label   : 'Search'
       },
+      pagiantion: {
+        visible: true
+      },
       noData: ''
     };
   },

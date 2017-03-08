@@ -27,10 +27,6 @@ function getCell({prop, defaultContent, render}, row) {
 }
 
 export default class Table extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   buildHeaders() {
     let {columns, sortBy, onSort} = this.props;
 

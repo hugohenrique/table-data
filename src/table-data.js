@@ -18,8 +18,7 @@ let DataTable = React.createClass({
             label={this.props.searchField.label}
             value={this.state.filterValues.globalSearch}
             onChange={this.onFilter.bind(this, 'globalSearch')}
-          /> :
-          null}
+          /> : null}
         <Table
           className="table table-bordered"
           columns={this.props.columns}
@@ -28,12 +27,13 @@ let DataTable = React.createClass({
           onSort={this.onSort}
           noData={this.props.noData}
         />
-        <Pagination
-          className="pagination"
-          currentPage={page.currentPage}
-          totalPages={page.totalPages}
-          onChangePage={this.onChangePage}
-        />
+        {this.props.pagination.visible ?
+          <Pagination
+            className="pagination"
+            currentPage={page.currentPage}
+            totalPages={page.totalPages}
+            onChangePage={this.onChangePage}
+          /> : null}
       </div>
     );
   }

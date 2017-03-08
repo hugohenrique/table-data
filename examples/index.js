@@ -64,6 +64,7 @@ ReactDOM.render(
     dataSource={dataSource}
     sortBy={{prop: 'id', order: 'ascending'}}
     searchField={{label: 'Searchable', visible: true}}
+    pagination={{visible: true}}
     noData="Without data"
   />,
   document.querySelector('#table-data')
