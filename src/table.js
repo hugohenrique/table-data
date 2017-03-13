@@ -6,6 +6,10 @@ import SortHeaderColumn from './sort-header-column';
 let isEmpty = value => value == null || value === '';
 
 function getCell({prop, defaultContent, render}, row) {
+  if (isEmpty(prop) && render) {
+    return render(row);
+  }
+
   let convertedKeys = prop.split('.');
   let rowNormalized = row[convertedKeys[0]];
 
@@ -79,9 +83,8 @@ export default class Table extends Component {
   }
 
   render() {
-    const tableProps = Object.assign({}, this.props);
     return (
-      <table {...tableProps}>
+      <table className={this.props.className}>
         <thead>
           <tr>
             {this.buildHeaders()}

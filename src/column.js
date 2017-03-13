@@ -6,11 +6,11 @@ export default class Column extends Component {
   }
 
   render() {
-    const {isHeader, children, ...extraProps} = this.props;
+    const {isHeader, children} = this.props;
     const Cell = isHeader ? 'th' : 'td';
 
     return (
-      <Cell {...extraProps}>
+      <Cell {...this.props.extraProps}>
         {children}
       </Cell>
     );

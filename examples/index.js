@@ -28,6 +28,13 @@ const columns = [
     prop     : 'image.title',
     sortable : false
     /* render: imageRender */
+  },
+  {
+    title : 'Customized',
+    prop  : '',
+    render: (row) => {
+      // console.log(row);
+    }
   }
 ];
 

@@ -94,6 +94,12 @@
 	  prop: 'image.title',
 	  sortable: false
 	  /* render: imageRender */
+	}, {
+	  title: 'Customized',
+	  prop: '',
+	  render: function render(row) {
+	    // console.log(row);
+	  }
 	}];
 
 	var dataSource = new _tableDataSource2.default([{
@@ -124,7 +130,7 @@
 	  dataSource: dataSource,
 	  sortBy: { prop: 'id', order: 'ascending' },
 	  searchField: { label: 'Searchable', visible: true },
-	  pagination: { visible: false },
+	  pagination: { visible: true },
 	  noData: 'Without data'
 	}), document.querySelector('#table-data'));
 
@@ -21676,6 +21682,10 @@
 	      defaultContent = _ref.defaultContent,
 	      render = _ref.render;
 
+	  if (isEmpty(prop) && render) {
+	    return render(row);
+	  }
+
 	  var convertedKeys = prop.split('.');
 	  var rowNormalized = row[convertedKeys[0]];
 
@@ -21785,10 +21795,9 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var tableProps = Object.assign({}, this.props);
 	      return _react2.default.createElement(
 	        'table',
-	        tableProps,
+	        { className: this.props.className },
 	        _react2.default.createElement(
 	          'thead',
 	          null,
@@ -21847,8 +21856,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -21869,14 +21876,13 @@
 	    value: function render() {
 	      var _props = this.props,
 	          isHeader = _props.isHeader,
-	          children = _props.children,
-	          extraProps = _objectWithoutProperties(_props, ['isHeader', 'children']);
+	          children = _props.children;
 
 	      var Cell = isHeader ? 'th' : 'td';
 
 	      return _react2.default.createElement(
 	        Cell,
-	        extraProps,
+	        this.props.extraProps,
 	        children
 	      );
 	    }
