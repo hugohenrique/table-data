@@ -8,7 +8,6 @@ module.exports = {
     }]
   },
   output: {
-    library: 'table-data',
-    libraryTarget: 'umd'
+    filename: 'bundle.js'
   }
 };

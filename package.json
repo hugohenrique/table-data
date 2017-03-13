@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack ./src --out-dir ./lib"
+    "build": "./node_modules/webpack/bin/webpack.js ./src --out-dir ./"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
