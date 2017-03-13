@@ -31,7 +31,7 @@ const columns = [
   },
   {
     title : 'Customized',
-    prop  : '',
+    prop  : null,
     render: (row) => {
       // console.log(row);
     }
