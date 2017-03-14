@@ -1,14 +1,13 @@
 import React      from 'react';
 import ReactDOM   from 'react-dom';
-import TableData  from '../src/table-data';
-import DataSource from '../src/table-data-source';
+import {TableData, TableDataSource} from 'table-data';
 
 let imageRender = (value) => {
   if (undefined === value['src']) {
     return null;
   }
 
-  return <img src={value['src']} />;
+  return (<img src={value['src']} />);
 };
 
 const columns = [
@@ -33,12 +32,14 @@ const columns = [
     title : 'Customized',
     prop  : null,
     render: (row) => {
-      // console.log(row);
+      console.log(row);
     }
   }
 ];
 
-const dataSource = new DataSource([
+console.log(TableDataSource);
+
+const dataSource = new TableDataSource([
   {
     id: 1,
     name: 'Foo',

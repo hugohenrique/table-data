@@ -1,13 +1,15 @@
 module.exports = {
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      loaders: ['babel'],
-      exclude: /node_modules/,
-      presets: ['es2015', 'react']
-    }]
-  },
+  entry: ['./src/index.js'],
   output: {
     filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test    : /\.js$/,
+        use     : ['babel-loader'],
+        exclude : /node_modules/
+      }
+    ]
   }
 };

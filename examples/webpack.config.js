@@ -1,20 +1,14 @@
 module.exports = {
-  entry: './index.js',
+  entry: ['./index.js'],
   output: {
     filename: 'bundle.js'
   },
-  resolve: {
-    alias: {
-      'table-data': '../src'
-    }
-  },
   module: {
-    loaders: [
+    rules: [
       {
         test    : /\.js$/,
-        exclude : /node_modules/,
-        loader  : 'babel-loader',
-        presets : ['es2015', 'react']
+        use     : ['babel-loader'],
+        exclude : /node_modules/
       }
     ]
   }
