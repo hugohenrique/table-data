@@ -1,18 +1,25 @@
 import React, {Component, PropTypes} from 'react';
 
 export default class SearchField extends Component {
-  constructor(...props) {
-    super(...props);
+  static propTypes = {
+    id       : PropTypes.string.isRequired,
+    label    : PropTypes.string.isRequired,
+    onChange : PropTypes.func.isRequired,
+    visible  : PropTypes.bool
+  }
+  static defaultProps = {
+    visible: true
+  }
+  constructor(props) {
+    super(props);
     this.state    = {value: ''};
     this.onChange = this.handleChange.bind(this);
   }
-
   handleChange(event) {
     let value = event.target.value;
     this.setState({value: value});
     this.props.onChange(value);
   }
-
   render() {
     return (
       <div>
@@ -30,14 +37,3 @@ export default class SearchField extends Component {
     );
   }
 }
-
-SearchField.propTypes = {
-  id       : PropTypes.string.isRequired,
-  label    : PropTypes.string.isRequired,
-  onChange : PropTypes.func.isRequired,
-  visible  : PropTypes.bool
-};
-
-SearchField.defaultProps = {
-  visible: true
-};

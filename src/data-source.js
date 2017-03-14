@@ -20,7 +20,7 @@ function filterPass(filters, data) {
   };
 }
 
-export default class TableDataSource {
+export default class DataSource {
   constructor(source) {
     this.source = source || {};
   }
@@ -40,7 +40,7 @@ export default class TableDataSource {
       endAt = rows.length;
     }
 
-    return new TableDataSource(rows.slice(startAt, endAt));
+    return new DataSource(rows.slice(startAt, endAt));
   }
 
   filter(filters, filterValues) {
@@ -48,7 +48,7 @@ export default class TableDataSource {
     let filterFunc = filterPass.bind(null, filters);
     let filtered   = rows.filter(each => some(filterValues, filterFunc(each)));
 
-    return new TableDataSource(filtered);
+    return new DataSource(filtered);
   }
 
   sort(byValues) {
@@ -59,11 +59,11 @@ export default class TableDataSource {
       sorted.reverse();
     }
 
-    return new TableDataSource(sorted);
+    return new DataSource(sorted);
   }
 
   clear() {
-    return new TableDataSource();
+    return new DataSource();
   }
 
   toJSON() {

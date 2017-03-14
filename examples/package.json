@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "table-data": "git+https://github.com/hugohenrique/table-data.git"
+    "react-dom": "^15.4.2"
   }
 }

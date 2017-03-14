@@ -1,6 +1,15 @@
 import React, {Component, PropTypes} from 'react';
 
 export default class Column extends Component {
+  static defaultProps = {
+    isHeader: false
+  };
+  static propTypes = {
+    prop      : PropTypes.string,
+    render    : PropTypes.func,
+    isHeader  : PropTypes.bool,
+    className : PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+  };
   render() {
     const {isHeader, children} = this.props;
     const Cell = isHeader ? 'th' : 'td';
@@ -12,14 +21,3 @@ export default class Column extends Component {
     );
   }
 }
-
-Column.propTypes = {
-  prop      : PropTypes.string,
-  render    : PropTypes.func,
-  isHeader  : PropTypes.bool,
-  className : PropTypes.oneOfType([PropTypes.string, PropTypes.func])
-};
-
-Column.defaultProps = {
-  isHeader: false
-};

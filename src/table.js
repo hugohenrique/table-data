@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Column           from './column';
-import DataSource       from './table-data-source';
+import DataSource       from './data-source';
 import SortHeaderColumn from './sort-header-column';
 
 let isEmpty = value => value == null || value === '';

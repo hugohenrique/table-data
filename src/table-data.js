@@ -1,6 +1,6 @@
 import React          from 'react';
 import Table          from './table';
-import TableDataMixin from './table-data-mixin';
+import TableDataMixin from './mixin';
 import Pagination     from './pagination';
 import SearchField    from './search-field';
 
