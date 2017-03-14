@@ -1,8 +1,9 @@
 {
   "name": "table-data",
   "version": "1.0.0",
-  "main": "./src/index.js",
+  "main": "./dist/bundle.js",
   "files": [
+    "dist",
     "src"
   ],
   "repository": {
