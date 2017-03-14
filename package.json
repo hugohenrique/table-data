@@ -1,9 +1,9 @@
 {
   "name": "table-data",
   "version": "1.0.0",
-  "main": "./bundle.js",
+  "main": "./dist/bundle.js",
   "files": [
-    "bundle.js",
+    "dist",
     "src"
   ],
   "repository": {
@@ -12,7 +12,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/webpack/bin/webpack.js ./src --out-dir ./"
+    "build": "./node_modules/webpack/bin/webpack.js ./src --out-dir ./dist"
   },
   "devDependencies": {
     "babel": "^6.5.2",
