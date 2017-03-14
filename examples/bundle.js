@@ -9472,9 +9472,7 @@ const columns = [{
   }
 }];
 
-console.log(__WEBPACK_IMPORTED_MODULE_2_table_data__["TableDataSource"]);
-
-const dataSource = new __WEBPACK_IMPORTED_MODULE_2_table_data__["TableDataSource"]([{
+const dataSource = new __WEBPACK_IMPORTED_MODULE_2_table_data__["DataSource"]([{
   id: 1,
   name: 'Foo',
   image: {

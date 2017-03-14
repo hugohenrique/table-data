@@ -1,7 +1,7 @@
 {
   "name": "table-data",
   "version": "1.0.0",
-  "main": "./dist/bundle.js",
+  "main": "./src/index.js",
   "files": [
     "dist",
     "src"
@@ -11,8 +11,7 @@
     "url": "https://github.com/hugohenrique/table-data"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/webpack/bin/webpack.js ./src --out-dir ./dist"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
     "babel": "^6.5.2",
