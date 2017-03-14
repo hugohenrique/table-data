@@ -2,10 +2,7 @@
   "name": "table-data",
   "version": "1.0.0",
   "main": "./src/index.js",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["src"],
   "repository": {
     "type": "git",
     "url": "https://github.com/hugohenrique/table-data"

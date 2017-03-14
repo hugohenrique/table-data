@@ -1,6 +1,6 @@
 import React      from 'react';
 import ReactDOM   from 'react-dom';
-import {TableData, DataSource} from 'table-data';
+import {TableData, TableDataSource} from '../src/index.js';
 
 let imageRender = (value) => {
   if (undefined === value['src']) {
@@ -37,7 +37,7 @@ const columns = [
   }
 ];
 
-const dataSource = new DataSource([
+const dataSource = new TableDataSource([
   {
     id: 1,
     name: 'Foo',
