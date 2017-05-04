@@ -65,7 +65,7 @@ export default class Table extends Component {
     return dataSource.rows().map((row, k) => (
       <tr key={k}>
         {columns.map((col, i) => (
-          <Column key={i}>
+          <Column key={i} style={col.style}>
             {getCell(col, row)}
           </Column>
         ))}

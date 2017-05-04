@@ -6,7 +6,6 @@ let imageRender = (value) => {
   if (undefined === value['src']) {
     return null;
   }
-
   return (<img src={value['src']} />);
 };
 
@@ -14,8 +13,10 @@ const columns = [
   {
     title    : 'ID',
     prop     : 'id',
-    width    : '60px',
-    sortable : true
+    sortable : true,
+    style: {
+      width: '60px',
+    }
   },
   {
     title    : 'Name',

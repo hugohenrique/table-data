@@ -15,7 +15,7 @@ export default class Column extends Component {
     const {isHeader, children} = this.props;
     const Cell = isHeader ? 'th' : 'td';
     return (
-      <Cell {...this.props.extraProps}>
+      <Cell style={this.props.style}>
         {children}
       </Cell>
     );

@@ -1731,7 +1731,7 @@ class Column extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
     const Cell = isHeader ? 'th' : 'td';
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       Cell,
-      this.props.extraProps,
+      { style: this.props.style },
       children
     );
   }
@@ -2131,7 +2131,7 @@ class Table extends __WEBPACK_IMPORTED_MODULE_0_react__["Component"] {
       { key: k },
       columns.map((col, i) => __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_2__column__["a" /* default */],
-        { key: i },
+        { key: i, style: col.style },
         getCell(col, row)
       ))
     ));
