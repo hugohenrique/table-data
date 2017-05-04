@@ -1,4 +1,5 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 // Used to cancel events.
 var preventDefault = event => event.preventDefault();
@@ -6,17 +7,14 @@ var preventDefault = event => event.preventDefault();
 export default class Pagination extends Component {
   shouldComponentUpdate(nextProps) {
     const props = this.props;
-
     return props.totalPages !== nextProps.totalPages ||
       props.currentPage !== nextProps.currentPage ||
       props.showPages !== nextProps.showPages;
   }
-
   onChangePage(pageNumber, event) {
     event.preventDefault();
     this.props.onChangePage(pageNumber);
   }
-
   render() {
     var {totalPages, showPages, currentPage} = this.props;
 
@@ -110,11 +108,13 @@ export default class Pagination extends Component {
   }
 }
 
-Pagination.defaultProps = {showPages: 5};
+Pagination.defaultProps = {
+  showPages: 5
+};
 
 Pagination.propTypes = {
-  onChangePage : PropTypes.func.isRequired,
-  totalPages   : PropTypes.number.isRequired,
-  currentPage  : PropTypes.number.isRequired,
-  showPages    : PropTypes.number
+  onChangePage: PropTypes.func.isRequired,
+  totalPages  : PropTypes.number.isRequired,
+  currentPage : PropTypes.number.isRequired,
+  showPages   : PropTypes.number
 };

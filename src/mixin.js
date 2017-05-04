@@ -21,7 +21,6 @@ export default {
   getInitialState() {
     return buildInitialState(this.props);
   },
-
   getDefaultProps() {
     return {
       pageSize: 10,
@@ -39,28 +38,22 @@ export default {
       noData: ''
     };
   },
-
   componentWillReceiveProps(nextProps) {
     this.setState(buildInitialState(nextProps));
   },
-
   componentWillMount() {
-    var {sortBy, dataSource} = this.state;
-
+    const {sortBy, dataSource} = this.state;
     if (sortBy) {
       this.setState({dataSource: dataSource.sort(sortBy)});
     }
   },
-
   onSort(sortBy) {
     const {dataSource} = this.state;
-
     this.setState({
-      sortBy     : sortBy,
-      dataSource : dataSource.sort(sortBy)
+      sortBy    : sortBy,
+      dataSource: dataSource.sort(sortBy)
     });
   },
-
   onFilter(filterName, filterValue) {
     let {filterValues, sortBy} = this.state;
     let {dataSource, filters}  = this.props;
@@ -75,22 +68,20 @@ export default {
       currentPage  : 0
     });
   },
-
   buildPage() {
     let {currentPage, pageSize, dataSource} = this.state;
     let startAt = pageSize * currentPage;
-
     return {
-      dataSource  : dataSource.slice(startAt, startAt + pageSize),
-      currentPage : currentPage,
-      totalPages  : Math.ceil(dataSource.rows().length / pageSize)
+      dataSource : dataSource.slice(startAt, startAt + pageSize),
+      currentPage: currentPage,
+      totalPages : Math.ceil(dataSource.rows().length / pageSize)
     };
   },
-
   onChangePage(pageNumber) {
-    this.setState({currentPage: pageNumber});
+    this.setState({
+      currentPage: pageNumber
+    });
   },
-
   onPageSizeChange(value) {
     let newPageSize = +value;
     let {currentPage, pageSize} = this.state;

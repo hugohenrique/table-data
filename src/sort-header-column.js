@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 function buildSort(column, sortBy, onSort) {
   let order     = sortBy.prop === column.prop ? sortBy.order : 'none';

@@ -24,15 +24,12 @@ export default class DataSource {
   constructor(source) {
     this.source = source || {};
   }
-
   rows() {
     return this.source;
   }
-
   columns() {
     return Object.keys(this.source[0]);
   }
-
   slice(startAt, endAt) {
     let rows = this.rows();
 
@@ -42,7 +39,6 @@ export default class DataSource {
 
     return new DataSource(rows.slice(startAt, endAt));
   }
-
   filter(filters, filterValues) {
     let rows       = this.rows();
     let filterFunc = filterPass.bind(null, filters);
@@ -50,7 +46,6 @@ export default class DataSource {
 
     return new DataSource(filtered);
   }
-
   sort(byValues) {
     let rows   = this.rows();
     let sorted = sortBy(rows, byValues.prop);
@@ -61,11 +56,9 @@ export default class DataSource {
 
     return new DataSource(sorted);
   }
-
   clear() {
     return new DataSource();
   }
-
   toJSON() {
     return {...this.source};
   }

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes        from 'prop-types';
 import Column           from './column';
 import DataSource       from './data-source';
 import SortHeaderColumn from './sort-header-column';
@@ -9,31 +10,25 @@ function getCell({prop, defaultContent, render}, row) {
   if (isEmpty(prop) && render) {
     return render(row);
   }
-
   let convertedKeys = prop.split('.');
   let rowNormalized = row[convertedKeys[0]];
-
   if (convertedKeys.length > 1) {
     convertedKeys.splice(1).forEach(key => {
       rowNormalized = rowNormalized[key];
     });
   }
-
   if (!isEmpty(prop) && isEmpty(rowNormalized)) {
     return defaultContent;
   }
-
   if (render) {
     return render(rowNormalized);
   }
-
   return rowNormalized;
 }
 
 export default class Table extends Component {
   buildHeaders() {
     let {columns, sortBy, onSort} = this.props;
-
     return columns.map((col, i) => {
       if (col.sortable) {
         return (
@@ -46,7 +41,6 @@ export default class Table extends Component {
           </SortHeaderColumn>
         );
       }
-
       return (
         <Column
           key={i}
@@ -59,10 +53,8 @@ export default class Table extends Component {
       );
     });
   }
-
   buildRows() {
     const {dataSource, columns, noData} = this.props;
-
     if (dataSource.rows().length === 0) {
       return (
         <tr>
@@ -70,7 +62,6 @@ export default class Table extends Component {
         </tr>
       );
     }
-
     return dataSource.rows().map((row, k) => (
       <tr key={k}>
         {columns.map((col, i) => (
@@ -81,7 +72,6 @@ export default class Table extends Component {
       </tr>
     ));
   }
-
   render() {
     return (
       <table className={this.props.className}>
@@ -107,8 +97,8 @@ Table.propTypes = {
   className: PropTypes.string,
   dataSource: PropTypes.instanceOf(DataSource).isRequired,
   sortBy: PropTypes.shape({
-    prop  : PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    order : PropTypes.oneOf(['ascending', 'descending'])
+    prop: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    order: PropTypes.oneOf(['ascending', 'descending'])
   }),
   onSort: PropTypes.func,
   noData: PropTypes.oneOfType([PropTypes.string, PropTypes.element])

@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 export default class Column extends Component {
   static defaultProps = {
@@ -13,7 +14,6 @@ export default class Column extends Component {
   render() {
     const {isHeader, children} = this.props;
     const Cell = isHeader ? 'th' : 'td';
-
     return (
       <Cell {...this.props.extraProps}>
         {children}
